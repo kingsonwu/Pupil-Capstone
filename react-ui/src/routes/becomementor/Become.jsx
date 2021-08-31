@@ -7,9 +7,11 @@ const Become = () => {
     const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
     const [type, setType] = useState("");
-    // const [skill, setSkill] = useState("");
+    const [skills, setSkills] = useState("");
     const [about, setAbout] = useState("");
     const [check, setCheck] = useState([""]);
+    const [city, setCity] = useState("");
+    const [zip, setZip] = useState("");
     
     const handleEmailChange = (event) => {
         setEmail(event.target.value)
@@ -27,10 +29,10 @@ const Become = () => {
       setType(event.target.value)
       console.log(type);
     }
-    //   const handleSkillChange = (event) => {
-    //   setSkill(event.target.value)
-    //   console.log(skill);
-    // }
+      const handleSkillChange = (event) => {
+      setSkills(event.target.value)
+      console.log(skills);
+    }
     const handleAboutChange = (event) => {
       setAbout(event.target.value)
       console.log(about);
@@ -39,6 +41,15 @@ const Become = () => {
       setCheck(event.target.value)
       console.log(check);
     }
+    const handleCityChange = (event) => {
+      setCity(event.target.value)
+      console.log(about);
+    }
+    const handleZipChange = (event) => {
+      setZip(event.target.value)
+      console.log(check);
+    }
+    
 
     const handleSubmit =  async (e) => {
       e.preventDefault();
@@ -48,22 +59,28 @@ const Become = () => {
           headers: {
               'Content-Type': 'application/json'
           },
-          body: JSON.stringify({ firstName, lastName, email, type, /*skill,*/ about, })
+          body: JSON.stringify({ firstName, lastName, email, type, skills, about, })
       });
       console.log(results);
       setFirstName('');
       setLastName('');
       setEmail('');
       setType('');
-      // setSkill('');
+      setSkills('');
       setAbout('');
+      setCity('');
+      setZip('');
     }
   
 
 
     return (
       <div className="wrapper">
-  <Form onSubmit = {handleSubmit}>
+
+<p className ="first-last-name" style={{fontFamily: "Roboto",fontSize:'3rem', display:'flex', justifyContent:'center'}}> BECOME A MENTOR </p>
+
+
+  <Form style={{width:'70%'}}onSubmit = {handleSubmit}>
    <Row className="mb-3 sm xs={2}">
     <Form.Group as={Col} controlId="formGridName">
       <Form.Label>First Name</Form.Label>
@@ -94,6 +111,11 @@ const Become = () => {
   </Form.Group>
 
   <Form.Group className="mt-1 mb-3 xs={1}" >
+    <Form.Label>What are your skills?</Form.Label>
+    <Form.Control onChange={handleSkillChange} value={skills} placeholder="Project management, cooking..." />
+  </Form.Group>
+
+  <Form.Group className="mt-1 mb-3 xs={1}" >
     <Form.Label>About</Form.Label>
     <Form.Control onChange={handleAboutChange} value={about} placeholder="Tell us about yourself" />
   </Form.Group>
@@ -101,12 +123,12 @@ const Become = () => {
   <Row className="mb-3 xs={1}">
     <Form.Group as={Col} controlId="formGridCity">
       <Form.Label>City</Form.Label>
-      <Form.Control />
+      <Form.Control onChange={handleCityChange} value={city} placeholder="Stocksdale"/>
     </Form.Group>
 
     <Form.Group as={Col} controlId="formGridState">
       <Form.Label>State</Form.Label>
-      <Form.Select defaultValue="Choose...">
+      <Form.Select defaultValue="AZ">
         <option>Choose...</option>
         <option>AL</option>
         <option>AK</option>
@@ -164,7 +186,7 @@ const Become = () => {
 <Row className ="mb-4 rowText1" md={2} sm={1}>
     <Form.Group as={Col} controlId="formGridZip">
       <Form.Label>Zip</Form.Label>
-      <Form.Control />
+      <Form.Control onChange={handleZipChange} value={zip} />
     </Form.Group>
   </Row>
 
