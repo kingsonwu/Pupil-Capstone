@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from "react";
+import { Link } from 'react-router-dom'
+import {Button} from 'react-bootstrap'
+import Menteeform from "./Menteeform";
 import "./profiles.css"
 
 const Profiles = (props) => {
@@ -36,6 +39,8 @@ const Profiles = (props) => {
           <p>{profile[0].about}</p>
         </div>
         </div>
+        Email: {profile[0].email} <br />
+        <p> <Link to={Menteeform}><Button size='sm' variant="outline-secondary">Mentor Me</Button>{' '}</Link></p>
 
      </div>
       

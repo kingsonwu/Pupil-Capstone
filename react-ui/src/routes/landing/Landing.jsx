@@ -17,7 +17,7 @@ const Landing = () => {
                 <p>
                     Be a mentor and grow. <br />
                     Get mentored and grow. <br />
-                    Someone is waiting for you.
+                    The sky is the limit.
                 </p>
             </div>
 

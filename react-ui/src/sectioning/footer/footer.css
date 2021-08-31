@@ -1,8 +1,12 @@
 footer {
     text-align: center;
+    padding: 2% 10%;
+
 }
 
 footer p div {
     text-decoration: none;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+
+a { color: inherit; } 
