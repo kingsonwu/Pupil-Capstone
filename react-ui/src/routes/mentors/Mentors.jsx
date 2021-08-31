@@ -32,11 +32,9 @@ const Mentors = () => {
                <Card style={{ width: '230px', margin:'20px' }}>
                <Card.Img variant="top" src="holder.js/100px180" />
                <Card.Body>
-                 <Card.Title>{mentors.firstName} {mentors.lastName}</Card.Title>
-                 <Card.Text>
-
-                 </Card.Text>
-                 <Link to= {`./profiles/${mentors.id}`} ><Button variant="dark">Select Mentor</Button></Link>
+               <Card.Title style={{fontFamily:'roboto', fontWeight:700, marginBottom:0, letterSpacing:'1px'}}>{mentors.firstName} {mentors.lastName} </Card.Title>
+                 <Card.Text style={{fontFamily:'lato', fontWeight:300,}}> {mentors.skills} </Card.Text>
+                 <Link to= {`./profiles/${mentors.id}`}><Button variant="dark">Select Mentor</Button></Link>
                </Card.Body>
              </Card>
              </div>

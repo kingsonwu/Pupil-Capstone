@@ -5,8 +5,45 @@
 } */
 
 
-header {
+.background-image {
+    background-image: url('../../assets/bground.jpg');
+    background-size: cover cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center 100px;  
+
+}
+.paragraph {
+    font-family: 'roboto';
+    font-weight: 100;
+    font-size: 90px;
+    display: flex;
+    flex-direction: column;   
+    justify-content: flex-start;
+    box-shadow: 13px 18px 13px -12px rgba(0,0,0,0.3);
+    padding-top: 5px;
+    padding-left: 3%;
+}
+
+.paragraph1 {
+    font-family: 'roboto';
+    font-weight: 100;
+    font-size: 90px;
+    display: flex;
+    flex: coolum;
+    justify-content: flex-start;
+    box-shadow: 13px 18px 13px -12px rgba(0,0,0,0.3);
+    padding-top: 5px;
+    padding-left: 3%;
+}
+
+.paragraph2 {
+    font-family: 'roboto';
+    font-weight: 100;
+    height: 190px;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: center;
+    padding-top: 2px;
+    padding-left: 10%;
 }
