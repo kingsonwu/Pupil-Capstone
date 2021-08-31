@@ -15,9 +15,9 @@ const Landing = () => {
             </div>
             <div className='paragraph2'>
                 <p>
-                    Be a mentor and grow.<br />
+                    Be a mentor and grow. <br />
                     Get mentored and grow. <br />
-                    Someone is waiting for you. 
+                    Someone is waiting for you.
                 </p>
             </div>
 

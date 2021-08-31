@@ -6,17 +6,19 @@
 
 
 .background-image {
-    background-image: url('../../assets/background.jpeg');
-    background-size: cover;
-    background-position-y: -820px;    
-    height: 80vh;
+    background-image: url('../../assets/bground.jpg');
+    background-size: cover cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center 100px;  
+
 }
 .paragraph {
     font-family: 'roboto';
     font-weight: 100;
     font-size: 90px;
     display: flex;
-    flex: coolum;
+    flex-direction: column;   
     justify-content: flex-start;
     box-shadow: 13px 18px 13px -12px rgba(0,0,0,0.3);
     padding-top: 5px;
@@ -42,7 +44,6 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    box-shadow: 13px 18px 13px -12px rgba(0,0,0,0.3);
     padding-top: 2px;
     padding-left: 10%;
 }
