@@ -15,3 +15,7 @@
 input[type="radio"]{
     margin: 0 5px 0 10px;
   }
+
+  #formGridState{
+    max-width: 11rem;
+  }

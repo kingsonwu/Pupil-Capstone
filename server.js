@@ -3,6 +3,8 @@ const cors = require("cors");
 const { Sequelize } = require("sequelize");
 const { Mentor } = require("./models");
 const session = require("express-session");
+const path = require('path');
+
 
 const app = express();
 
@@ -10,7 +12,9 @@ const app = express();
 //                                Middleware
 // ----------------------------------------------------------------------------
 app.use(cors());
-app.use(express.static("public"));
+// app.use(express.static("public"));
+app.use(express.static(path.resolve(__dirname + '/react-ui/build')));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
