@@ -3,7 +3,7 @@ import Landing from "./landing/Landing"
 import About from "./about/About"
 import Findmentor from "./findmentor/Findmentor"
 import Mentors from "./mentors/Mentors"
-import Login from "./login/Login"
+// import Login from "./login/Login"
 import Become from "./becomementor/Become"
 import Profiles from "./profile/Profiles"
 import Skilltypes from './findmentor/Skilltypes';
@@ -35,11 +35,6 @@ const Routes = () => {
         render={() => <Mentors /> }
     />    
 
-    <Route
-        exact={true}
-        path="/login" 
-        render={() => <Login /> }
-    />       
     <Route
         exact={true}
         path="/become" 
