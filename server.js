@@ -6,6 +6,8 @@ const { Sequelize } = require("sequelize");
 const { Mentor } = require("./models");
 const session = require("express-session");
 const path = require('path');
+const { PORT } = process.env;
+
 
 
 const server = express();
