@@ -11,6 +11,7 @@ const { PORT } = process.env;
 
 
 const server = express();
+process.env.HTTPS = true
 
 // ----------------------------------------------------------------------------
 //                                Middleware
