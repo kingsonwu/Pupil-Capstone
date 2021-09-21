@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const express = require("express");
 const cors = require("cors");
 const { Sequelize } = require("sequelize");
@@ -6,33 +8,33 @@ const session = require("express-session");
 const path = require('path');
 
 
-const app = express();
+const server = express();
 
 // ----------------------------------------------------------------------------
 //                                Middleware
 // ----------------------------------------------------------------------------
-app.use(cors());
-// app.use(express.static("public"));
-app.use(express.static(path.resolve(__dirname + '/react-ui/build')));
+server.use(cors());
+// server.use(express.static("public"));
+server.use(express.static(path.resolve(__dirname + '/react-ui/build')));
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+server.use(express.json());
+server.use(express.urlencoded({ extended: true }));
 
 const sess = {
   secret: "keyboard mouse",
   cookie: { maxAge: 600000 },
   id: null,
 };
-app.use(session(sess));
+server.use(session(sess));
 
 const PORT = 8080;
 
-app.get("/heartbeat", (req, res) => {
+server.get("/heartbeat", (req, res) => {
   res.send("Hello!! I am heartbeat Kingsley channel!");
 });
 
 // Posting data from the form to the database.
-app.post("/api/mentors", async (req, res) => {
+server.post("/api/mentors", async (req, res) => {
   console.log("got it done")
   const { firstName, lastName, email, type, skills, about } = req.body;
   const newMentor = await Mentor.create({
@@ -49,13 +51,13 @@ app.post("/api/mentors", async (req, res) => {
 });
 
 // This GET request gets all mentors from the database.
-app.get("/api/mentors", async (req, res) => {
+server.get("/api/mentors", async (req, res) => {
   const mentors = await Mentor.findAll();
   res.json(mentors);
 });
 
 
-app.get("/api/skilltypes/:type", async (req, res) => {
+server.get("/api/skilltypes/:type", async (req, res) => {
   const mentorType = req.params.type
   const getMentorType = await Mentor.findAll({
     where: {
@@ -65,7 +67,7 @@ app.get("/api/skilltypes/:type", async (req, res) => {
   res.json(getMentorType);
 });
 
-app.get("/api/profiles/:id", async (req, res) => {
+server.get("/api/profiles/:id", async (req, res) => {
   const mentorId = req.params.id
   const getMentorId = await Mentor.findAll({
     where: {
@@ -77,6 +79,6 @@ app.get("/api/profiles/:id", async (req, res) => {
 
 
 
-app.listen(PORT, () => {
+server.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
 });
