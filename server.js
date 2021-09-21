@@ -30,8 +30,6 @@ const sess = {
 };
 server.use(session(sess));
 
-const PORT = 8080;
-
 server.get("/heartbeat", (req, res) => {
   res.send("Hello!! I am heartbeat Kingsley channel!");
 });
