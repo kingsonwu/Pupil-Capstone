@@ -6,21 +6,22 @@ const { Sequelize } = require("sequelize");
 const { Mentor } = require("./models");
 const session = require("express-session");
 const path = require('path');
-const { PORT } = process.env;
 
 
 
 const server = express();
 process.env.HTTPS = true
+const { PORT } = process.env;
 
 // ----------------------------------------------------------------------------
 //                                Middleware
 // ----------------------------------------------------------------------------
-server.use(cors());
+server.use(express.json());
+
+// server.use(cors());
 // server.use(express.static("public"));
 server.use(express.static(path.resolve(__dirname + '/react-ui/build')));
 
-server.use(express.json());
 server.use(express.urlencoded({ extended: true }));
 
 const sess = {
@@ -78,9 +79,9 @@ server.get("/api/profiles/:id", async (req, res) => {
   res.json(getMentorId);
 });
 
- // All remaining requests return the React app, so it can handle routing.
+//  All remaining requests return the React app, so it can handle routing.
  server.get('*', function(request, response) {
-  response.sendFile(path.resolve(__dirname + '/react-ui/build'));
+  response.sendFile(path.resolve(__dirname + '/react-ui/build', 'index.html'));
 });
 
 server.listen(PORT, () => {
