@@ -78,7 +78,10 @@ server.get("/api/profiles/:id", async (req, res) => {
   res.json(getMentorId);
 });
 
-
+ // All remaining requests return the React app, so it can handle routing.
+ server.get('*', function(request, response) {
+  response.sendFile(path.resolve(__dirname + '/react-ui/build'));
+});
 
 server.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
