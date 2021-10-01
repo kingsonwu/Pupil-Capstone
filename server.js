@@ -1,5 +1,3 @@
-require('dotenv').config();
-
 const express = require("express");
 const cors = require("cors");
 const { Sequelize } = require("sequelize");
@@ -8,35 +6,41 @@ const session = require("express-session");
 const path = require('path');
 
 
-
-const server = express();
-process.env.HTTPS = true
-const { PORT } = process.env;
+const app = express();
 
 // ----------------------------------------------------------------------------
 //                                Middleware
 // ----------------------------------------------------------------------------
-server.use(express.json());
+app.use(cors());
+// // app.use(express.static("public"));
+// app.use(express.static(path.resolve(__dirname + '/react-ui/build')));
 
-// server.use(cors());
-// server.use(express.static("public"));
-server.use(express.static(path.resolve(__dirname + '/react-ui/build')));
+app.use(express.json());
 
-server.use(express.urlencoded({ extended: true }));
+if (process.env.NODE_ENV === "production")
+{
+  //serve static content
+  // npm run build
 
-const sess = {
-  secret: "keyboard mouse",
-  cookie: { maxAge: 600000 },
-  id: null,
-};
-server.use(session(sess));
+  app.use(express.static(path.join(__dirname,"react-ui/build")));
+}
+// app.use(express.urlencoded({ extended: true }));
 
-server.get("/heartbeat", (req, res) => {
+// const sess = {
+//   secret: "keyboard mouse",
+//   cookie: { maxAge: 600000 },
+//   id: null,
+// };
+// app.use(session(sess));
+ 
+const PORT = process.env.PORT || 5000;
+
+app.get("/heartbeat", (req, res) => {
   res.send("Hello!! I am heartbeat Kingsley channel!");
 });
 
 // Posting data from the form to the database.
-server.post("/api/mentors", async (req, res) => {
+app.post("/api/mentors", async (req, res) => {
   console.log("got it done")
   const { firstName, lastName, email, type, skills, about } = req.body;
   const newMentor = await Mentor.create({
@@ -53,13 +57,13 @@ server.post("/api/mentors", async (req, res) => {
 });
 
 // This GET request gets all mentors from the database.
-server.get("/api/mentors", async (req, res) => {
+app.get("/api/mentors", async (req, res) => {
   const mentors = await Mentor.findAll();
   res.json(mentors);
 });
 
 
-server.get("/api/skilltypes/:type", async (req, res) => {
+app.get("/api/skilltypes/:type", async (req, res) => {
   const mentorType = req.params.type
   const getMentorType = await Mentor.findAll({
     where: {
@@ -69,7 +73,7 @@ server.get("/api/skilltypes/:type", async (req, res) => {
   res.json(getMentorType);
 });
 
-server.get("/api/profiles/:id", async (req, res) => {
+app.get("/api/profiles/:id", async (req, res) => {
   const mentorId = req.params.id
   const getMentorId = await Mentor.findAll({
     where: {
@@ -79,11 +83,10 @@ server.get("/api/profiles/:id", async (req, res) => {
   res.json(getMentorId);
 });
 
-//  All remaining requests return the React app, so it can handle routing.
- server.get('*', function(request, response) {
-  response.sendFile(path.resolve(__dirname + '/react-ui/build', 'index.html'));
-});
+app.get("*", (req,res)=> {
+  res.sendFile(path.join(__dirname,"react-ui/build/index.html"))
+})
 
-server.listen(PORT, () => {
+app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
 });
